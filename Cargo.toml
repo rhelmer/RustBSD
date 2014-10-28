@@ -1,0 +1,5 @@
+[package]
+
+name = "RustBSD"
+version = "0.0.1"
+authors = ["Robert Helmer <rhelmer@rhelmer.org>"]
