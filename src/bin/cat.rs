@@ -8,6 +8,20 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
     println!("-n\tNumber the output lines, starting at 1");
 }
 
+fn cat(count_lines: bool) {
+    let mut line_number: int = 0;
+
+    for line in io::stdin().lines() {
+        if count_lines {
+            line_number += 1;
+            print!("    {}  {}", line_number, line.unwrap());
+        } else {
+            print!("{}", line.unwrap());
+        }
+    }
+}
+
+#[cfg(not(test))]
 fn main() {
     let args: Vec<String> = os::args();
 
@@ -34,14 +48,5 @@ fn main() {
         count_lines = true;
     }
 
-    let mut line_number: int = 0;
-
-    for line in io::stdin().lines() {
-        if count_lines {
-            line_number += 1;
-            print!("    {}  {}", line_number, line.unwrap());
-        } else {
-            print!("{}", line.unwrap());
-        }
-    }
+    cat(count_lines)
 }
