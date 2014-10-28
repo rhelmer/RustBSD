@@ -5,7 +5,7 @@ use std::{io,os};
 fn print_usage(program: &str, _opts: &[OptGroup]) {
     println!("Usage: {} [options]", program);
     println!("-h\tUsage");
-    println!("-b\tNumber the non-blank output lines, starting at 1");
+    println!("-n\tNumber the output lines, starting at 1");
 }
 
 fn main() {
@@ -17,7 +17,7 @@ fn main() {
     // FIXME would be nice to if disabling --long-opts was cleaner
     let opts = [
         optflag("h", "", "print this help menu"),
-        optflag("b", "", "Number the non-blank output lines, starting at 1")
+        optflag("n", "", "Number the output lines, starting at 1")
     ];
 
     let matches = match getopts(args.tail(), opts) {
@@ -30,7 +30,7 @@ fn main() {
     if matches.opt_present("h") {
         print_usage(program.as_slice(), opts);
         return;
-    } else if matches.opt_present("b") {
+    } else if matches.opt_present("n") {
         count_lines = true;
     }
 
@@ -39,7 +39,7 @@ fn main() {
     for line in io::stdin().lines() {
         if count_lines {
             line_number += 1;
-            print!("{}: {}", line_number, line.unwrap());
+            print!("    {}  {}", line_number, line.unwrap());
         } else {
             print!("{}", line.unwrap());
         }
