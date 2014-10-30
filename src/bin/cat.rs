@@ -48,7 +48,7 @@ fn main() {
     let program = args[0].clone();
 
     // FIXME help here is redundant with print_usage
-    // FIXME would be nice to if disabling --long-opts was cleaner
+    // TODO would be nice if disabling --long-opts was cleaner
     let opts = [
         optflag("h", "", "print this help menu"),
         optflag("n", "", "Number the output lines, starting at 1")
