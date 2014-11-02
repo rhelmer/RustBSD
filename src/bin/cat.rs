@@ -41,7 +41,6 @@ fn cat(files: Vec<String>, count_lines: bool) {
     }
 }
 
-#[cfg(not(test))]
 fn main() {
     let args: Vec<String> = os::args();
 
