@@ -6,7 +6,6 @@ use std::io::process::Command;
 fn print_usage(program: &str, _opts: &[OptGroup]) {
     println!("Usage: {} [options]", program);
     println!("-h\tUsage");
-    println!("-n\tNumber the output lines, starting at 1");
 }
 
 fn shell() {
