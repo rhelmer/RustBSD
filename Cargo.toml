@@ -4,8 +4,3 @@ name = "RustBSD"
 version = "0.0.1"
 authors = ["Robert Helmer <rhelmer@rhelmer.org>"]
 
-[[bin]]
-
-name = "cat"
-path = "src/bin/cat.rs"
-test = false
