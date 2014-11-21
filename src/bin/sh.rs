@@ -8,9 +8,9 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
     println!("-h\tUsage");
 }
 
-fn shell() {
+fn shell(prompt: &str) {
     loop {
-        print!("$ ");
+        print!("{} ", prompt);
         // TODO just read one line instead of for loop w/ immediate break
         for line in io::stdin().lines() {
             let cmd = line.unwrap();
@@ -29,8 +29,7 @@ fn shell() {
 
 fn exec(cmd: String) {
     // TODO split by space, call as cmd+args
-    let split: Vec<&str> = cmd.as_slice().split(',').collect();
-    println("split: {}", split);
+    // let split: Vec<&str> = cmd.as_slice().split(',').collect();
     let output = match Command::new(cmd.as_slice().trim()).output() {
         Ok(p) => p,
         Err(e) => panic!("failed to execute process: {}", e),
@@ -61,5 +60,6 @@ fn main() {
         return;
     }
 
-    shell();
+    let prompt = "$";
+    shell(prompt);
 }
