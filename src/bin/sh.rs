@@ -29,8 +29,8 @@ fn shell(prompt: &str) {
 
 fn exec(cmd: String) {
     // TODO split by space, call as cmd+args
-    // let split: Vec<&str> = cmd.as_slice().split(',').collect();
-    let output = match Command::new(cmd.as_slice().trim()).output() {
+    let args: Vec<&str> = cmd.as_slice().trim().split(' ').collect();
+    let output = match Command::new(args[0]).arg(args[1]).output() {
         Ok(p) => p,
         Err(e) => panic!("failed to execute process: {}", e),
     };
