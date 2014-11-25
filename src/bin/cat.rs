@@ -48,7 +48,7 @@ fn main() {
 
     // FIXME help here is redundant with print_usage
     // TODO would be nice if disabling --long-opts was cleaner
-    let opts = [
+    let opts = &[
         optflag("h", "", "print this help menu"),
         optflag("n", "", "Number the output lines, starting at 1")
     ];
