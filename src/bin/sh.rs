@@ -1,4 +1,3 @@
-#![feature(slicing_syntax)]
 extern crate getopts;
 use getopts::{optflag,getopts,OptGroup};
 use std::{io,os};
@@ -31,7 +30,8 @@ fn shell(prompt: &str) {
 fn exec(cmd: String) {
     // TODO split by space, call as cmd+args
     let args: Vec<&str> = cmd.as_slice().trim().split(' ').collect();
-    let output = match Command::new(args[0]).args(args[1..].as_slice()).output() {
+    let output = match Command::new(args[0])
+                                .args(args.tail().as_slice()).output() {
         Ok(p) => p,
         Err(e) => panic!("failed to execute process: {}", e),
     };
