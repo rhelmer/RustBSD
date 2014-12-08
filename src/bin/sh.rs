@@ -11,18 +11,14 @@ fn print_usage(program: &str, _opts: &[OptGroup]) {
 fn shell(prompt: &str) {
     loop {
         print!("{} ", prompt);
-        // TODO just read one line instead of for loop w/ immediate break
-        for line in io::stdin().lines() {
-            let cmd = line.unwrap();
-            // TODO only ,in -v mode
-            // println!("debug: {}", cmd.as_slice());
+        let cmd = io::stdin().read_line().unwrap();
+        // TODO only ,in -v mode
+        // println!("debug: {}", cmd.as_slice());
 
-            // shell built-ins
-            match cmd.as_slice().trim() {
-                "exit" => return,
-                _ => exec(cmd)
-            }
-            break;
+        // shell built-ins
+        match cmd.as_slice().trim() {
+            "exit" => return,
+            _ => exec(cmd)
         }
     }
 }
